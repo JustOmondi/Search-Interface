@@ -66,6 +66,7 @@ section, footer, header, aside, nav{
 .row
 {
     margin-bottom: -10px;
+    width: 90%;
 }
 
 .bar{
@@ -105,7 +106,7 @@ section, footer, header, aside, nav{
 
 ul{
     list-style: none;
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     text-align: left;
 }

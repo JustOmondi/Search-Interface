@@ -103,8 +103,16 @@ function mainController($scope)
                 // $scope.results.push(result.response.docs[i])
             }
 
-            var resultsTitle = Handlebars.compile($("#results-title").html());
-            $("#new").append(resultsTitle({text: search.searchString, count: $scope.count}));
+            if(search.searchString == '')
+            {
+                $("#new").append("<h4>No query entered</h4>")
+            }
+            else
+            {
+                var resultsTitle = Handlebars.compile($("#results-title").html());
+                $("#new").append(resultsTitle({text: search.searchString, count: $scope.count}));
+            }
+
         });
 
         console.log(search.results.length);

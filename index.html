@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EducaSA</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="app.js"></script>
+    <script id="hit-template" type="text/x-handlebars-template">
+        <div class="entry">
+            <b>{{title}}</b><br>
+            {{text}}
+        </div>
+    </script>
+
+    <script id="results-title" type="text/x-handlebars-template">
+        <div>
+            <h4>{{count}} search results for <span class="search-terms">{{text}}</span></h4>
+        </div>
+    </script>
+
+</head>
+
+    <h1>EducaSA</h1>
+
+    <!-- Initialize a new AngularJS app and associate it with a module named "instantSearch"-->
+    <body>
+
+        <div id="main" ng-app="searchApp" ng-controller="mainController">
+
+            <div id="search-container">
+                <div class="bar">
+                    <!-- Create a binding between the searchString model and the text field -->
+                    <input id='barinput' type="text" ng-model="searchString" ng-keyup="submitQuery()" placeholder="Enter your search terms" />
+
+                </div>
+
+                <a id="searchButton" ng-click="submitQuery()" class="waves-effect deep-orange darken-3 waves-light btn-large">Search</a>
+            </div>
+
+            <div id="new">
+
+            </div>
+
+
+            <ul>
+                <!-- Render a li element for every entry in the items array. Notice
+                     the custom search filter "searchFor". It takes the value of the
+                     searchString model as an argument.
+                 -->
+
+                <!--Change the result.name and result.manu below to be result.title and result.text, corresponding to the
+                attributes of a document that is returned-->
+                <li ng-repeat="result in results">
+                    <a href="" target="_blank">
+                        <div class="row">
+                            <div class="col s12 m24">
+                                <div class="card cyan darken-3">
+                                    <div class="card-content white-text">
+                                        <span>{{result.name | limitTo: 5}}</span>
+
+                                        <span><p> {{result.manu}}</p></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </body>
+
+</html>

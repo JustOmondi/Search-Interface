@@ -62,11 +62,22 @@ section, footer, header, aside, nav{
     display: inline-flex;
     margin: auto;
 }
+.card
+{
+    background-color: #00838f !important;
+    transition: all 0.2s ease;
+}
+
+.card:hover
+{
+    background-color: #00555c !important
+}
 
 .row
 {
     margin-bottom: -10px;
     width: 90%;
+    color: #ffc300;
 }
 
 .bar{

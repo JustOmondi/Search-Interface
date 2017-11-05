@@ -44,27 +44,36 @@ function mainController($scope)
                 {
                     search.results.push(result.response.docs[i]);
 
-                    var longtext = result.response.docs[i].text[0];
-                    var words = longtext.substr(0, snippetMaxCharLength).split(" ");
-
-                    console.log("Long text size = "+result.response.docs[i].text[0].length);
-
-                    var shortText = '';
-
-                    // if(search.snippetMaxCharLength > longtext.length)
-                    // {
-                    //     search.snippetMaxCharLength = longtext.length;
-                    // }
-
-                    for (var j = 0; j < maxWords; j++)
+                    if(result.response.docs[i].text)
                     {
-                        shortText += words[j]+" ";
-                    }
-                    shortText += " . . . ";
+                        var longtext = result.response.docs[i].text[0];
+                        var words = longtext.substr(0, snippetMaxCharLength).split(" ");
 
-                    search.items.push({title: result.response.docs[i].Title, text: shortText, url: result.response.docs[i].url});
-                    // search.items.push({title: result.response.docs[i].title, text: shortText});
-                    $scope.count++;
+                        console.log("Long text size = "+result.response.docs[i].text[0].length);
+
+                        var shortText = '';
+
+                        // if(search.snippetMaxCharLength > longtext.length)
+                        // {
+                        //     search.snippetMaxCharLength = longtext.length;
+                        // }
+
+                        for (var j = 0; j < maxWords; j++)
+                        {
+                            shortText += words[j]+" ";
+                        }
+                        shortText += " . . . ";
+
+                        search.items.push({title: result.response.docs[i].Title, text: shortText, url: result.response.docs[i].url});
+                        // search.items.push({title: result.response.docs[i].title, text: shortText});
+                        $scope.count++;
+                    }
+                    else
+                    {
+                        console.log("Invalid doc: "+result.response.docs[i].Title);
+                        docsToReturn++;
+                    }
+
                 });
 
 

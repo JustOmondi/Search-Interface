@@ -35,7 +35,7 @@
             <div id="search-container">
                 <div class="bar">
                     <!-- Create a binding between the searchString model and the text field -->
-                    <input id='barinput' type="text" ng-model="searchString" ng-keyup="submitQuery()" placeholder="Enter your search terms" />
+                    <input id='barinput' type="text" ng-model="searchString" placeholder="Enter your search terms" />
 
                 </div>
 
@@ -55,15 +55,15 @@
 
                 <!--Change the result.name and result.manu below to be result.title and result.text, corresponding to the
                 attributes of a document that is returned-->
-                <li ng-repeat="result in results">
-                    <a href="" target="_blank">
+                <li ng-repeat="result in items | limitTo:30">
+                    <a href="{{result.url}}" target="_blank">
                         <div class="row">
                             <div class="col s12 m24">
                                 <div class="card cyan darken-3">
                                     <div class="card-content white-text">
-                                        <span>{{result.name | limitTo: 5}}</span>
-
-                                        <span><p> {{result.manu}}</p></span>
+                                        <span><p>{{result.title}}</p></span>
+                                        <br>
+                                        <span> {{result.text}}</span>
                                     </div>
                                 </div>
                             </div>

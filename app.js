@@ -4,36 +4,27 @@ function mainController($scope)
 {
     var search = $scope;
 
+    search.snippetMaxCharLength = 50;
+
+    var docsToReturn = 30;
+
     search.results = [];
     $scope.count = 0;
+
+    search.items = [];
 
     search.submitQuery = function()
     {
         $scope.count = 0;
         console.log("Submit query called");
-        // var text = $scope.searchString;
-        // alert(text);
+
         search.query_url = 'http://localhost:8983/solr/techproducts/select?q=';
         // $scope.query_url += $scope.searchString+"&wt=json&json.wrf=callback";
         search.query_url += search.searchString;
 
         $("#new").empty();
 
-        // var hitTemplate = Handlebars.compile($("#hit-template").html());
-        //
-
-
-        // $("#new").append(resultsTitle({text: $scope.searchString, count: $scope.count}));
-
-
-        // $("#new").append(resultsTitle({text: search.searchString, count: $scope.count}));
-
         search.results = [];
-
-        // $http.get($scope.url).then(function(response)
-        // {
-        //     console.log("HTTP "+response.response.docs.length);
-        // });
 
         search.items = [];
 
@@ -41,11 +32,31 @@ function mainController($scope)
         {
             // alert(result.response.docs.length);
             // $scope.results = result.response.docs;
-            for (var i = 0; i < result.response.docs.length; i++)
+
+            console.log(result.response.docs.length+" documents returned");
+
+            for (var i = 0; i < docsToReturn; i++)
             {
                 $scope.$apply(function ()
                 {
                     search.results.push(result.response.docs[i]);
+
+                    var longtext = result.response.docs[i].features;
+
+                    var shortText = '';
+
+                    if(search.snippetMaxCharLength > longtext.length)
+                    {
+                        search.snippetMaxCharLength = longtext.length;
+                    }
+
+                    for (var j = 0; j < search.snippetMaxCharLength; j++)
+                    {
+                        shortText += longtext[j];
+                    }
+
+                    // search.items.push({title: result.response.docs[i].name, text: shortText, url: result.response.docs[i]});
+                    search.items.push({title: result.response.docs[i].name, text: shortText});
                     $scope.count++;
                 });
 
@@ -61,12 +72,6 @@ function mainController($scope)
         console.log(search.results.length);
 
     };
-
-    search.getCount = function ()
-    {
-        return search.results.length;
-    };
-
 
 }
 
@@ -102,63 +107,6 @@ function mainController($scope)
 //     };
 //
 // });
-
-// angular.module('instantSearch').controller('searchController',['$scope',function($scope)
-function searchController($scope)
-{
-    $scope.results = [];
-    // $scope.count = 0;
-
-    $scope.submitQuery = function()
-    {
-        console.log("Submit query called");
-        // var text = $scope.searchString;
-        // alert(text);
-        $scope.query_url = 'http://localhost:8983/solr/techproducts/select?q=';
-        // $scope.query_url += $scope.searchString+"&wt=json&json.wrf=callback";
-        $scope.query_url += $scope.searchString;
-
-        $("#new").empty();
-
-        // var hitTemplate = Handlebars.compile($("#hit-template").html());
-        //
-        var resultsTitle = Handlebars.compile($("#results-title").html());
-
-        // $("#new").append(resultsTitle({text: $scope.searchString, count: $scope.count}));
-
-        $("#new").append(resultsTitle({text: $scope.searchString}));
-
-        $scope.results = [];
-
-        // $http.get($scope.url).then(function(response)
-        // {
-        //     console.log("HTTP "+response.response.docs.length);
-        // });
-
-        $.getJSON($scope.query_url, function(result)
-        {
-            // alert(result.response.docs.length);
-            // $scope.results = result.response.docs;
-            for (var i = 0; i < result.response.docs.length; i++)
-            {
-                $scope.results.push(result.response.docs[i]);
-                console.log($scope.results.length);
-                // $scope.results.push(result.response.docs[i])
-            }
-        });
-
-
-
-    };
-
-    $scope.getCount = function ()
-    {
-        return $scope.results.length;
-    };
-
-}
-
-
 
 
 // The controller

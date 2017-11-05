@@ -4,7 +4,7 @@ function mainController($scope)
 {
     var search = $scope;
 
-    search.snippetMaxCharLength = 50;
+    search.snippetMaxCharLength = 200;
 
     var docsToReturn = 30;
 
@@ -18,9 +18,10 @@ function mainController($scope)
         $scope.count = 0;
         console.log("Submit query called");
 
-        search.query_url = 'http://localhost:8983/solr/techproducts/select?q=';
+        // search.query_url = 'http://localhost:8983/solr/techproducts/select?q=';
+        search.query_url = 'http://localhost:8983/solr/EducaSA/select?q=text:"';
         // $scope.query_url += $scope.searchString+"&wt=json&json.wrf=callback";
-        search.query_url += search.searchString;
+        search.query_url += search.searchString+"\"";
 
         $("#new").empty();
 
@@ -41,7 +42,9 @@ function mainController($scope)
                 {
                     search.results.push(result.response.docs[i]);
 
-                    var longtext = result.response.docs[i].features;
+                    var longtext = result.response.docs[i].text[0];
+
+                    console.log("Long text size = "+result.response.docs[i].text.length);
 
                     var shortText = '';
 
@@ -55,8 +58,8 @@ function mainController($scope)
                         shortText += longtext[j];
                     }
 
-                    // search.items.push({title: result.response.docs[i].name, text: shortText, url: result.response.docs[i]});
-                    search.items.push({title: result.response.docs[i].name, text: shortText});
+                    search.items.push({title: result.response.docs[i].Title, text: shortText, url: result.response.docs[i].url});
+                    // search.items.push({title: result.response.docs[i].title, text: shortText});
                     $scope.count++;
                 });
 

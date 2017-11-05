@@ -4,7 +4,9 @@ function mainController($scope)
 {
     var search = $scope;
 
-    search.snippetMaxCharLength = 200;
+    var snippetMaxCharLength = 800;
+
+    var maxWords = 70;
 
     var docsToReturn = 30;
 
@@ -43,20 +45,22 @@ function mainController($scope)
                     search.results.push(result.response.docs[i]);
 
                     var longtext = result.response.docs[i].text[0];
+                    var words = longtext.substr(0, snippetMaxCharLength).split(" ");
 
-                    console.log("Long text size = "+result.response.docs[i].text.length);
+                    console.log("Long text size = "+result.response.docs[i].text[0].length);
 
                     var shortText = '';
 
-                    if(search.snippetMaxCharLength > longtext.length)
-                    {
-                        search.snippetMaxCharLength = longtext.length;
-                    }
+                    // if(search.snippetMaxCharLength > longtext.length)
+                    // {
+                    //     search.snippetMaxCharLength = longtext.length;
+                    // }
 
-                    for (var j = 0; j < search.snippetMaxCharLength; j++)
+                    for (var j = 0; j < maxWords; j++)
                     {
-                        shortText += longtext[j];
+                        shortText += words[j]+" ";
                     }
+                    shortText += " . . . ";
 
                     search.items.push({title: result.response.docs[i].Title, text: shortText, url: result.response.docs[i].url});
                     // search.items.push({title: result.response.docs[i].title, text: shortText});

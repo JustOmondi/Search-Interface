@@ -1,5 +1,20 @@
 // Define a new module for our app
 var app = angular.module("searchApp", []);
+
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 function mainController($scope)
 {
     var search = $scope;

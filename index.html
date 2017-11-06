@@ -27,104 +27,111 @@
 
     <body>
 
-    <div style="display: flex;">
-        <div style="margin: 20px; position: absolute; left: 0; top: 0;">
-            <div id="feed">
-                <!-- start sw-rss-feed code -->
-                <script type="text/javascript">
-                    <!--
-                    rssfeed_url = new Array();
-                    rssfeed_url[0]="http://feeds.feedburner.com/EdutopiaNewContent?format=xml";
-                    rssfeed_frame_width="430";
-                    rssfeed_frame_height="260";
-                    rssfeed_scroll="on";
-                    rssfeed_scroll_step="6";
-                    rssfeed_scroll_bar="on";
-                    rssfeed_target="_blank";
-                    rssfeed_font_size="12";
-                    rssfeed_font_face="sans-serif";
-                    rssfeed_border="on";
-                    rssfeed_css_url="https://feed.surfing-waves.com/css/style6.css";
-                    rssfeed_title="on";
-                    rssfeed_title_name="";
-                    rssfeed_title_bgcolor="#5c9bb7";
-                    rssfeed_title_color="#fff";
-                    rssfeed_title_bgimage="";
-                    rssfeed_footer="off";
-                    rssfeed_footer_name="rss feed";
-                    rssfeed_footer_bgcolor="#fff";
-                    rssfeed_footer_color="#333";
-                    rssfeed_footer_bgimage="";
-                    rssfeed_item_title_length="50";
-                    rssfeed_item_title_color="#666";
-                    rssfeed_item_bgcolor="#fff";
-                    rssfeed_item_bgimage="";
-                    rssfeed_item_border_bottom="on";
-                    rssfeed_item_source_icon="off";
-                    rssfeed_item_date="off";
-                    rssfeed_item_description="on";
-                    rssfeed_item_description_length="120";
-                    rssfeed_item_description_color="#666";
-                    rssfeed_item_description_link_color="#333";
-                    rssfeed_item_description_tag="off";
-                    rssfeed_no_items="0";
-                    rssfeed_cache = "71e1dd66a3084a5f2e8c1e3e641b6430";
-                    //-->
-                </script>
-                <script type="text/javascript" src="https://feed.surfing-waves.com/js/rss-feed.js"></script>
-                <!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. -->
-                <div style="text-align:right; width:430px;"><a href="http://www.surfing-waves.com/feed.htm" target="_blank" style="color:#ccc;font-size:0px">feedwidget @</a> <a href="http://www.surfing-waves.com" target="_blank" style="color:#ccc;font-size:0px">Surfing Waves</a></div>
-                <!-- end sw-rss-feed code -->
+    <div style="display: flex; width: 100%; height: 100%">
+        <div id="left" style="width: 30%; height: 100%; position: fixed; left: 0; top: 0; bottom: 0">
+            <div style="margin: 20px; margin-left: -10px;">
+                <div id="feed">
+                    <!-- start sw-rss-feed code -->
+                    <script type="text/javascript">
+                        <!--
+                        rssfeed_url = new Array();
+                        rssfeed_url[0]="http://feeds.feedburner.com/EdutopiaNewContent?format=xml";
+                        rssfeed_frame_width="330";
+                        rssfeed_frame_height="600";
+                        rssfeed_scroll="on";
+                        rssfeed_scroll_step="6";
+                        rssfeed_scroll_bar="on";
+                        rssfeed_target="_blank";
+                        rssfeed_font_size="12";
+                        rssfeed_font_face="sans-serif";
+                        rssfeed_border="on";
+                        rssfeed_css_url="https://feed.surfing-waves.com/css/style6.css";
+                        rssfeed_title="on";
+                        rssfeed_title_name="";
+                        rssfeed_title_bgcolor="#5c9bb7";
+                        rssfeed_title_color="#fff";
+                        rssfeed_title_bgimage="";
+                        rssfeed_footer="off";
+                        rssfeed_footer_name="rss feed";
+                        rssfeed_footer_bgcolor="#fff";
+                        rssfeed_footer_color="#333";
+                        rssfeed_footer_bgimage="";
+                        rssfeed_item_title_length="50";
+                        rssfeed_item_title_color="#666";
+                        rssfeed_item_bgcolor="#fff";
+                        rssfeed_item_bgimage="";
+                        rssfeed_item_border_bottom="on";
+                        rssfeed_item_source_icon="off";
+                        rssfeed_item_date="off";
+                        rssfeed_item_description="on";
+                        rssfeed_item_description_length="120";
+                        rssfeed_item_description_color="#666";
+                        rssfeed_item_description_link_color="#333";
+                        rssfeed_item_description_tag="off";
+                        rssfeed_no_items="0";
+                        rssfeed_cache = "71e1dd66a3084a5f2e8c1e3e641b6430";
+                        //-->
+                    </script>
+                    <script type="text/javascript" src="https://feed.surfing-waves.com/js/rss-feed.js"></script>
+                    <!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. -->
+                    <div style="text-align:right; width:430px;"><a href="http://www.surfing-waves.com/feed.htm" target="_blank" style="color:#ccc;font-size:0px">feedwidget @</a> <a href="http://www.surfing-waves.com" target="_blank" style="color:#ccc;font-size:0px">Surfing Waves</a></div>
+                    <!-- end sw-rss-feed code -->
+                </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <div id="image">
-            <img src="coe_hp_new.png">
-        </div>
-        <h1>EducaSA</h1>
+        <div id="right" style="width: 70%; height: 100%; position: absolute; right: 0">
+            <div>
+                <div id="image">
+                    <img src="coe_hp_new.png">
+                </div>
+                <h1>EducaSA</h1>
 
-
-    </div>
-
-    <div id="main" ng-app="searchApp" ng-controller="mainController">
-
-        <div id="search-container">
-            <div class="bar">
-                <input id='barinput' type="text" ng-model="searchString" my-enter="submitQuery()" placeholder="Enter your search terms" />
 
             </div>
 
-            <a id="searchButton" ng-click="submitQuery()" class="waves-effect deep-orange darken-3 waves-light btn-large">Search</a>
-        </div>
+            <div id="main" ng-app="searchApp" ng-controller="mainController">
 
-        <div id="new">
+                <div id="search-container">
+                    <div class="bar">
+                        <input id='barinput' type="text" ng-model="searchString" my-enter="submitQuery()" placeholder="Enter your search terms" />
 
-        </div>
+                    </div>
+
+                    <a id="searchButton" ng-click="submitQuery()" class="waves-effect deep-orange darken-3 waves-light btn-large">Search</a>
+                </div>
+
+                <div id="new">
+
+                </div>
 
 
-        <ul>
-            <li ng-repeat="result in items | limitTo:30">
-                <a href="{{result.url}}" target="_blank">
-                    <div class="row">
-                        <div class="col s12 m24">
-                            <div class="card ">
-                                <div class="card-content white-text">
-                                    <span><p>{{result.title}}</p></span>
-                                    <br>
-                                    <span> {{result.text}}</span>
+                <ul>
+                    <li ng-repeat="result in items | limitTo:30">
+                        <a href="{{result.url}}" target="_blank">
+                            <div class="row">
+                                <div class="col s12 m24">
+                                    <div class="card ">
+                                        <div class="card-content white-text">
+                                            <span><p>{{result.title}}</p></span>
+                                            <br>
+                                            <span> {{result.text}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
+                        </a>
+                    </li>
 
 
-        </ul>
+                </ul>
 
+            </div>
+        </div>
     </div>
+
+
+
     </body>
 
 </html>

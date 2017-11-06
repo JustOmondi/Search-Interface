@@ -35,10 +35,9 @@ function mainController($scope)
         $scope.count = 0;
         console.log("Submit query called");
 
-        // search.query_url = 'http://localhost:8983/solr/techproducts/select?q=';
-        // search.query_url = 'http://localhost:8983/solr/EducaSA/select?q=text:';
-        search.query_url = 'http://localhost:8983/solr/educasa_stemming/select?q=text:';
-        // $scope.query_url += $scope.searchString+"&wt=json&json.wrf=callback";
+
+        search.query_url = 'http://localhost:8983/solr/EducaSA/select?q=text:';
+        // search.query_url = 'http://localhost:8983/solr/educasa_stemming/select?q=text:';
         var strlist = search.searchString.split(' ');
         for(var k = 0;k < strlist.length; k++)
         {

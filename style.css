@@ -44,7 +44,10 @@ section, footer, header, aside, nav{
     padding-top: 20px;
 }
 
-
+.feed-container .header
+{
+    background-color: #5c9bb7;
+}
 img
 {
     width: 100%;
